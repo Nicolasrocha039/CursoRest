@@ -70,6 +70,24 @@ public class VerbosTest {
     }
 
     @Test
+    public void deveAdicionarUmUserComXMLUsandoObjeto() {
+        User user = new User("Usuario XML", 69);
+        basePath = "/usersXML";
+
+        given()
+                .log().all()
+                .contentType(ContentType.XML)
+                .body("<user><name>Jose Almeida</name><age>35</age></user>")
+        .when()
+                .post()
+        .then()
+                .log().all()
+                .statusCode(201)
+
+        ;
+    }
+
+    @Test
     public void deveAlterarUmUser() {
         given()
                 .log().all()
